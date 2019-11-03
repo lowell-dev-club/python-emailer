@@ -6,24 +6,27 @@ from email.mime.multipart import MIMEMultipart # MIMEMultipart changing sender
 Sending an email in python useing smtplib, python default library and mime text to format message
 '''
 
-email_recipient = email_recipient
-pass_path = pass_path
-email_user = data['email_address'] # get email address
-email_pass = data['email_password'] # get email password
-# message area
-msg = MIMEMultipart() # formatting
+email_recipient = input('Type the recipients email: ')
+email_user = input('**ONLY WORKS FOR GMAIL ACCOUNTS** Type your email: ')
+email_pass = input('Type your email password: ')
+
+subject = input('Type your email subject: ')
+email_message = input('**USE \\n for new lines** Type your email message: ')
+
+# Message formatting
+msg = MIMEMultipart()
 msg['From'] = email_user
-msg['To'] = recipient_email # input recipient email
-msg['Subject'] = subject # input subject
-msg.attach(MIMEText(email_message,'plain')) # add body
-message = msg.as_string() # format all text
+msg['To'] = recipient_email
+msg['Subject'] = subject
+msg.attach(MIMEText(email_message,'plain'))
+message = msg.as_string()
 
 # sending code
 smtp_server = SMTP('smtp.gmail.com', 587) # connection to 587 port for gmail
 smtp_server.ehlo_or_helo_if_needed()
-smtp_server.starttls() #start connection
+smtp_server.starttls()
 smtp_server.ehlo_or_helo_if_needed()
-smtp_server.login(email_user, email_pass) # login with credentials
-smtp_server.sendmail(email_user, recipient_email, message) # send email
-smtp_server.quit() # quit connection
-print('Email Sent!') # done
+smtp_server.login(email_user, email_pass)
+smtp_server.sendmail(email_user, recipient_email, message)
+smtp_server.quit()
+print(f'Email Sent to {email_recipient')
