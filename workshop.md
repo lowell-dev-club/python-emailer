@@ -56,4 +56,49 @@ except Exception as e:
     print(e.message)
 ```
 
+#### Advanced steps
+
+We can create a variable to store html code to send through an email.
+
+```python
+htmlContent = '''
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.coolclass {
+  color: rgb(255, 175, 175);
+}
+.smallText {
+  color: #ddd
+  font-size: 7px;
+}
+</style>
+</head>
+<body>
+<h1>Hello There.</h1>
+
+<p class="coolclass">Welcome to my html file</p>
+
+<p>Thanks<br>-Lowell Dev Club</p>
+<p class="smallText>Sent using python!</p>
+<a href="https://www.lowelldev.club/">Our website!</a>
+</body>
+</html>
+'''
+```
+
+Then we replace this part of the code to send our new html.
+
+```python
+message = Mail(
+    from_email='from_email@example.com',
+    to_emails='to@example.com',
+    subject='Sending with Twilio SendGrid is Fun',
+    html_content=htmlContent)
+```
+
+You can now customize your html email messages with css styling and html elements!
+
 View the code file [here](emailer.py)  
+Check out a functioning program [here](https://repl.it/@calee14/Email-sender-workshop)
